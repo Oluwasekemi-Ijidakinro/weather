@@ -1,6 +1,37 @@
 let weather = {
-    // "apikey": "efe081eb7aed5984c0d4b6cdb065783d"
-    "apikey": "e2c989ab7c6f71181a70e14d81cb2a7f"
+    apikey: "efe081eb7aed5984c0d4b6cdb065783d",
+    fetchWeather: function (city) {
+        fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + this.apikey
+        ).then((response) => response.json())
+            .then((data) => this.displayWeather(data));
+    },
+    displayWeather: function(data) {
+         const {name} = data;
+         const {icon, description} = data.weather[0]; 
+         const {temp, humidity} = data.main;
+         const {speed} = data.wind;
+         console.log(name, icon, description, temp, humidity,speed);
+         document.querySelector(".city").innerText = "Weather in " + name;
+         document.querySelector(".icon").src = "https://openweathermap.org/img/wn/" + icon + ".png";
+         document.querySelector(".description").innerText = description;
+         document.querySelector(".temp").innerText = temp + "°C";
+         document.querySelector(".humidity").innerText = "Humidity: " + humidity + "%";
+         document.querySelector(".wind").innerText = "Wind Speed: " + speed + "km/h";
+         document.body.style.backgroundImage = url("https://unsplash.com/images/nature/" + name )
+         
+    },
+    search: function(){
+        this.fetchWeather(document.querySelector(".search-bar").value);
+    }
+};
 
-}
-let url = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}"
+document.querySelector(".search button").addEventListener("click", function(){
+     weather.search();
+})
+document.querySelector(".search-bar").addEventListener("keyup", function (event){
+    if (event.key == "Enter"){
+        weather.search();
+    }
+})
+
+

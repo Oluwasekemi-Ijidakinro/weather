@@ -4,13 +4,13 @@ body{
     align-items: center;
     height: 100vh;
     margin: 0;
-    background:wheat;
+    background: url(./tom-barrett-hgGplX3PFBg-unsplash.jpg);
     font-family: sans-serif;
     font-size: 120%;
     
 }
 .card{
-    background: black;
+    background: rgba(0, 0, 0, 0.7);
     padding: 2rem;
     border-radius: 30px;
     width: 100%;
@@ -23,6 +23,12 @@ body{
     justify-content: center;
     align-items: center;
 }
+.flex{
+    display: flex;
+}
+.description{
+    margin-top: 10px;
+}
 button{
     margin: 0.5em;
     border-radius: 50%;
@@ -30,7 +36,7 @@ button{
     height: 2.5em;
     width: 2.5em;
     outline: none;
-    background: #7c7c7c2b;
+    background: #7c7c7c;
     color: white;
     cursor: pointer;
     transition: 0.12s ease-in-out;
